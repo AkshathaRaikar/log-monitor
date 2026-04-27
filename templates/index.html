@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Log Monitoring Dashboard</title>
+    <style>
+        body { font-family: Arial; margin: 20px; }
+        li { margin: 5px 0; }
+    </style>
+</head>
+<body>
+
+    <h1>Log Monitoring Dashboard</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="logfile" required>
+        <button type="submit">Upload</button>
+    </form>
+
+    <h2>Total Errors: {{ error_count }}</h2>
+
+    {% if anomaly %}
+        <h3 style="color:red;">⚠️ Anomaly Detected!</h3>
+    {% endif %}
+
+    <ul>
+        {% for type, line in results %}
+            <li><b>{{ type }}</b>: {{ line }}</li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>
